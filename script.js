@@ -19,6 +19,19 @@ const notes = [{
 const filters = {
     searchText: ''
 }
+// const user = {
+//     name: 'Kyle',
+//     age: 23
+// }
+
+// const userJSON = JSON.stringify(user);
+// console.log(userJSON);
+
+const userJSON = localStorage.getItem('user');
+const user =  JSON.parse(userJSON);
+console.log(`${user.name} is ${user.age}`);
+
+
 
 // Creating a function that takes in two arguments the notes that we mentioned above an any notes we've yet to create.
 // Or we can pass in a whole new array of notes.
