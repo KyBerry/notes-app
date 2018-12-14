@@ -1,21 +1,11 @@
 
 // All of the notes in the notes obeject that we render on the screen using the renderNotes function.
 
-let notes = [];
+const notes = getSavedNotes();
 
 const filters = {
     searchText: ''
 }
-
-// Check for existing saved data
-const notesJSON = localStorage.getItem('notes');
-
-
-// Checking for existing data
-if(notesJSON !== null) {
-    notes = JSON.parse(notesJSON)
-}
-
 
 const renderNotes = function(notes, filters){
 
