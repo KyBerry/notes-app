@@ -16,13 +16,6 @@ if (note === undefined) {
 noteTitle.value = note.title;
 noteBody.value = note.body;
 
-
-// <input type="text" id='note-title' placeholder='Note title'>
-// <textarea id="note-body" cols="30" rows="10" placeholder='Enter note text'></textarea>
-// <button id='remove-note'>Remove Note</button>
-// <script src="notes-functions.js"></script>
-// <script src="notes-edit.js"></script>
-
 noteTitle.addEventListener('input',function(e){
     note.title = e.target.value;
     savedNotes(notes);
@@ -56,7 +49,7 @@ window.addEventListener('storage', function(e){
 });
 
 window.addEventListener('storage', function(e){
-    console.log('the storage changed');
+    console.log(e);
     // if(e.key === 'notes') {
         // 1. Parse the new data and update notes
         // 2. Rerender the notes
