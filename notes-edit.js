@@ -8,9 +8,7 @@ const lastUpdated = document.querySelector('#last-edited');
 
 const noteId = location.hash.substring(1);
 let notes = getSavedNotes();
-let note = notes.find(function(note){
-    return note.id === noteId;
-});
+let note = notes.find((note) => note.id === noteId);
 
 if (note === undefined) {
     location.assign('index.html');
@@ -20,14 +18,14 @@ noteTitle.value = note.title;
 noteBody.value = note.body;
 lastUpdated.textContent = generateLastEdited(note.updatedAt);
 
-noteTitle.addEventListener('input',function(e){
+noteTitle.addEventListener('input',(e) => {
     note.title = e.target.value;
     note.updatedAt = moment().valueOf();
     lastUpdated.textContent = generateLastEdited(note.updatedAt);
     savedNotes(notes);
 });
 
-noteBody.addEventListener('input',function(e){
+noteBody.addEventListener('input', (e) => {
     note.body = e.target.value;
     note.updatedAt = moment().valueOf();
     lastUpdated.textContent = generateLastEdited(note.updatedAt);
@@ -36,34 +34,21 @@ noteBody.addEventListener('input',function(e){
 
 
 
-removeElement.addEventListener('click',function(){
+removeElement.addEventListener('click',() =>{
     removeNote(note.id);
     savedNotes(notes);
     location.assign('index.html');
 });
 
-window.addEventListener('storage', function(e){
+window.addEventListener('storage', (e) => {
     if(e.key === 'notes'){
         notes = JSON.parse(e.newValue)
-        note = notes.find(function(note){
-            return note.id === noteId;
-        });
-    
+        note = notes.find((note) => note.id === noteId);
         if (note === undefined) {
             location.assign('index.html');
         };
-    
         noteTitle.value = note.title;
         noteBody.value = note.body;
         lastUpdated.textContent = generateLastEdited(note.updatedAt);
     }
 });
-
-window.addEventListener('storage', function(e){
-    console.log(e);
-    // if(e.key === 'notes') {
-        // 1. Parse the new data and update notes
-        // 2. Rerender the notes
-    // }
-
-})
