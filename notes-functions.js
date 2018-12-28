@@ -1,9 +1,15 @@
+'use strict'
+
 // Refactoring the notes-app-one and making a seperate file for all the functions in script.js
 
 // This function reads existing notes from localStorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes');
-    return notesJSON !== null ? JSON.parse(notesJSON) : [];
+    try {
+        return notesJSON ? JSON.parse(notesJSON) : [];
+    } catch(e) {
+        return [];
+    }
 }
 
 // Save the notes to localStorage
